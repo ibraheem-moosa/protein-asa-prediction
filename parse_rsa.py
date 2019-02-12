@@ -2,7 +2,7 @@
 from Bio.PDB import Polypeptide
 
 def parse_rsa(fname):
-    aa = []
+    protein = []
     asa = []
     with open(fname) as f:
         ignore_line = 2
@@ -11,9 +11,9 @@ def parse_rsa(fname):
                 ignore_line -= 1
                 continue
             line = line.split()
-            aa.append(Polypeptide.one_to_index(line[1]))
+            protein.append(Polypeptide.one_to_index(line[1]))
             asa.append(float(line[2]))
-    return aa, asa
+    return protein, asa
     
     
             
