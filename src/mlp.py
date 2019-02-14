@@ -13,7 +13,7 @@ if __name__ == '__main__':
     ws = int(sys.argv[2])
     train_prot_windows, train_asas, test_prot_windows, test_asas = load_oh(data_dir, ws)
     print('Dataset loaded')
-    mlp = MLPRegressor(verbose=True)
+    mlp = MLPRegressor(hidden_layer_sizes=(100,50), verbose=True, early_stopping=True, learning_rate_init=0.05)
     print('Calling fit')
     mlp.fit(train_prot_windows, train_asas)
     print(mean_absolute_error(test_asas, mlp.predict(test_prot_windows)))
