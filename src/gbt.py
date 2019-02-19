@@ -19,7 +19,7 @@ if __name__ == '__main__':
     ws = int(sys.argv[2])
     train_prot_windows, train_asas, test_prot_windows, test_asas = load_non_oh(data_dir, ws)
     print('Dataset loaded')
-    gbt = GradientBoostingRegressor(max_depth=9, loss='lad', n_estimators=10000, verbose=5, n_iter_no_change=5, learning_rate=0.1)
+    gbt = GradientBoostingRegressor(max_depth=12, loss='lad', n_estimators=10000, verbose=5, n_iter_no_change=5, learning_rate=0.1)
     print('Doing 5-fold cross validation')
     cv_result = cross_val_score(gbt, train_prot_windows, train_asas, cv=5, scoring=make_scorer(mean_absolute_error), verbose=100, n_jobs=1)
     print(cv_result)
