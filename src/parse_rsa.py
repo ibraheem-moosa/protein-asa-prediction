@@ -1,6 +1,8 @@
 # coding: utf-8
 from Bio.PDB import Polypeptide
-
+'''
+Parse a .rsa file and return protein sequence and corresponding asa.
+'''
 def parse_rsa(fname):
     protein = []
     asa = []
