@@ -24,13 +24,13 @@ if __name__ == '__main__':
     #test_pool = Pool(test_prot_windows, test_asas, cat_features=list(range(len(test_prot_windows[0]))))
     params = {
             'depth': range(10,17), 
-            'learning_rate': 10.0**np.arange(-2,1), 
+            'learning_rate': 10.0**np.arange(-1,1), 
             'bagging_temparature':[0,1],
-            'rsm':np.arange(0.1,1.,.3),
+            #'rsm':np.arange(0.1,1.,.3),
             'l2_leaf_reg':[1,2,3],
             'random_strength':np.arange(0.,1.,.2)}
 
-    cbt = CatBoostRegressor(loss_function='MAE', n_estimators=1000, task_type='CPU')
+    cbt = CatBoostRegressor(loss_function='MAE', n_estimators=2000, cat_features=list(range(len(train_prot_windows[0]))), task_type='CPU')
     rscv = RandomizedSearchCV(cbt, params, n_iter=32, scoring='neg_mean_absolute_error', cv=5, verbose=10)
     '''
     print('Doing 5-fold cross validation')
