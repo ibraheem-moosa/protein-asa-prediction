@@ -45,7 +45,7 @@ def do_cross_validation(reg, data_dir, ws, train_ratio,
 
     cv_result = cross_val_score(reg, X, y, cv=cv,
                                 scoring=scorer,
-                                verbose=100, n_jobs=-1)
+                                verbose=100, n_jobs=1)
     print(cv_result)
     print(cv_result.mean())
     return cv_result
