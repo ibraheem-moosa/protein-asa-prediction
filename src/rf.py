@@ -17,6 +17,6 @@ if __name__ == '__main__':
     ws = int(sys.argv[2])
     cv = 5
     train_ratio = 0.8
-    rf = RandomForestRegressor(max_depth=30, n_estimators=100, verbose=10)
+    rf = RandomForestRegressor(max_depth=30, n_estimators=200, verbose=10)
     do_cross_validation(rf, data_dir, ws, train_ratio, cv,
                         y_transform=np.sqrt, y_rev_transform=np.square)
