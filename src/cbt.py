@@ -22,7 +22,7 @@ if __name__ == '__main__':
     cv = 5
     train_ratio = 0.8
     #train_prot_windows, train_asas, test_prot_windows, test_asas = load_non_oh(data_dir, ws)
-    #print('Dataset loaded')
+    print('Dataset loaded')
     #train_pool = Pool(train_prot_windows, train_asas, cat_features=list(range(len(train_prot_windows[0]))))
     #test_pool = Pool(test_prot_windows, test_asas, cat_features=list(range(len(test_prot_windows[0]))))
     params = {
@@ -33,8 +33,9 @@ if __name__ == '__main__':
             'l2_leaf_reg':[1,2,3],
             'random_strength':np.arange(0.,1.,.2)}
 
-    cbt = CatBoostRegressor(loss_function='RMSE', depth=8,
-                            n_estimators=1000, task_type='CPU', cat_features=list(range(2 * ws + 1)))
+    cbt = CatBoostRegressor(loss_function='RMSE', learning_rate=1.0,
+            depth=8, n_estimators=10000,
+            cat_features=list(range(2 * ws + 1)), task_type='CPU')
     do_cross_validation(cbt, data_dir, ws, train_ratio, cv,
                         y_transform=np.sqrt, y_rev_transform=np.square)
     exit()
